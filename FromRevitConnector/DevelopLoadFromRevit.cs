@@ -35,6 +35,13 @@ namespace FromRevitConnector
         static Boolean CodeMetod()
         {
             TaskDialog.Show("New plagin", "Load from Revit");
+            //Получение настроек выгрузки в DB
+
+
+            //В зависимости от настроек проихвести сбор данных с ревит 
+
+
+
             return true;
         }
     }
