@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FromRevitConnector
 {
-    public class Develop
+    public class DevelopLoadFromDB
     {
         public static Result SomeCode(ExternalCommandData commandData, ref string message)
         {
@@ -34,7 +34,7 @@ namespace FromRevitConnector
         /// <returns></returns>
         static Boolean CodeMetod()
         {
-            TaskDialog.Show("New plagin", "HelloWorld!!!!");
+            TaskDialog.Show("New plagin", "Load from DB");
             return true;
         }
     }

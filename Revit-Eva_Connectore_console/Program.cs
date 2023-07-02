@@ -51,7 +51,7 @@ namespace Revit_Eva_Connector_console
 
             Console.ReadLine();
 
-            string allComands = "0 - Вывести всех \n 1 - Добавить нового \n 2 - удалить  \n 3 - выход";
+            //string allComands = "0 - Вывести всех \n 1 - Добавить нового \n 2 - удалить  \n 3 - выход";
 
             //while (isWork)
             //{
@@ -183,9 +183,9 @@ namespace Revit_Eva_Connector_console
         static List<PanelItem> ReadAllFromDB()
         {
             string json = File.ReadAllText(MyPath);
-
+#nullable disable
             List<PanelItem> panelItems = JsonConvert.DeserializeObject<List<PanelItem>>(json);
-
+#nullable enable
             return panelItems ?? new List<PanelItem>();
         }
 

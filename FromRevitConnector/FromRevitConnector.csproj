@@ -51,7 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands.cs" />
-    <Compile Include="Develop.cs" />
+    <Compile Include="DevelopLoadFromDB.cs" />
+    <Compile Include="DevelopLoadFromRevit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

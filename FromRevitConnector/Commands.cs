@@ -15,7 +15,7 @@ namespace FromRevitConnector
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            return Develop.SomeCode(commandData, ref message);
+            return DevelopLoadFromRevit.SomeCode(commandData, ref message);
         }
     }
 
@@ -25,7 +25,7 @@ namespace FromRevitConnector
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            return Develop.SomeCode(commandData, ref message);
+            return DevelopLoadFromDB.SomeCode(commandData, ref message);
         }
     }
 }
