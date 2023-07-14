@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EVA_Settings">
+      <HintPath>..\..\EVA_Settings\ElectricalVirtualAssistant\bin\Debug\EVA_Settings.dll</HintPath>
+    </Reference>
     <Reference Include="RevitAPI">
       <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2022\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -53,6 +56,7 @@
     <Compile Include="Commands.cs" />
     <Compile Include="DevelopLoadFromDB.cs" />
     <Compile Include="DevelopLoadFromRevit.cs" />
+    <Compile Include="ParameterNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
