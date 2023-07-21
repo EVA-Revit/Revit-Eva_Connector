@@ -11,6 +11,7 @@ using Revit_Eva_Connector.Items;
 using EVA_S;
 using EVA_S.WPF;
 using EVA_S.ExtensibleStorageExtension.ElementExtension;
+using Autodesk.Revit.DB.Electrical;
 
 namespace FromRevitConnector
 {
@@ -69,17 +70,25 @@ namespace FromRevitConnector
 
                 ReadAndWriteUserParameters.ReadFromIniUserParametrs(manager, parametersName);
             }
-        
+
 
 
 
             //В зависимости от настроек произвести сбор данных с ревит 
             //Получение всех панелей
+            FilteredElementCollector allBoards = new FilteredElementCollector(doc)
+                           .OfCategory(BuiltInCategory.OST_ElectricalEquipment).WhereElementIsNotElementType();
+
+            foreach (var board in allBoards)
+            {
+                var fullCircuits = board.MEPModel.GetElectricalSystems(); //Получение всех цепей щита
+            }
 
 
 
 
-            TaskDialog.Show("New plagin", parametersName.ParamCountElements);
+
+            //TaskDialog.Show("New plagin", parametersName.ParamCountElements);
 
             return true;
         }
