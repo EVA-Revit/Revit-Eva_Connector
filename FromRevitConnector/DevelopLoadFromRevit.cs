@@ -81,7 +81,7 @@ namespace FromRevitConnector
 
             foreach (var board in allBoards)
             {
-                var fullCircuits = board.MEPModel.GetElectricalSystems(); //Получение всех цепей щита
+                //var fullCircuits = board.MEPModel.GetElectricalSystems(); //Получение всех цепей щита
             }
 
 
