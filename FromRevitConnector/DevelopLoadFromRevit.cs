@@ -79,9 +79,19 @@ namespace FromRevitConnector
             FilteredElementCollector allBoards = new FilteredElementCollector(doc)
                            .OfCategory(BuiltInCategory.OST_ElectricalEquipment).WhereElementIsNotElementType();
 
-            foreach (var board in allBoards)
+            foreach (FamilyInstance board in allBoards)
             {
-                //var fullCircuits = board.MEPModel.GetElectricalSystems(); //Получение всех цепей щита
+                
+
+
+
+                var fullCircuits = board.MEPModel.GetElectricalSystems(); //Получение всех цепей щита
+           
+                
+
+
+
+
             }
 
 
