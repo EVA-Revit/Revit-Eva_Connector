@@ -56,7 +56,6 @@
     <Compile Include="Commands.cs" />
     <Compile Include="DevelopLoadFromDB.cs" />
     <Compile Include="DevelopLoadFromRevit.cs" />
-    <Compile Include="ParameterNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
