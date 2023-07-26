@@ -56,8 +56,9 @@ namespace Revit_Eva_Connector_console
             ConnectorJson.MyPath = MyPath;
             var temp = ConnectorJson.ReadAllFromDB();
 
-            var pop = temp.First().Id.ToString();
-            Console.WriteLine(pop);
+              
+
+
             Console.ReadLine();
 
             //string allComands = "0 - Вывести всех \n 1 - Добавить нового \n 2 - удалить  \n 3 - выход";

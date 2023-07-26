@@ -83,7 +83,7 @@ namespace FromRevitConnector
 
 
             //запись в json
-            string path = "\\EVA_connector.json";
+            string path = "\\EVA_connector_Revit.json";
             var temppath = Environment.GetEnvironmentVariable("TMP", EnvironmentVariableTarget.User);
             //var temppath = Path.GetTempPath();
             var myPath = temppath + path;
@@ -145,28 +145,28 @@ namespace FromRevitConnector
 
                 panelItem.Mode1 = board.LookupParameter(ParametersName.ParamMode1)?.AsString();
                 panelItem.Kc1 = board.LookupParameter(ParametersName.ParamKc1)?.AsString();
-                panelItem.Pcurrent1 = board.LookupParameter(ParametersName.ParamScurrent1)?.AsString();
+                panelItem.Pcurrent1 = board.LookupParameter(ParametersName.ParamPcurrent1)?.AsString();
                 panelItem.Scurrent1 = board.LookupParameter(ParametersName.ParamScurrent1)?.AsString();
                 panelItem.Cos1 = board.LookupParameter(ParametersName.ParamCos1)?.AsString();
                 panelItem.Icurrent1 = board.LookupParameter(ParametersName.ParamIcurrent1)?.AsString();
 
                 panelItem.Mode2 = board.LookupParameter(ParametersName.ParamMode2)?.AsString();
                 panelItem.Kc2 = board.LookupParameter(ParametersName.ParamKc2)?.AsString();
-                panelItem.Pcurrent2 = board.LookupParameter(ParametersName.ParamScurrent2)?.AsString();
+                panelItem.Pcurrent2 = board.LookupParameter(ParametersName.ParamPcurrent2)?.AsString();
                 panelItem.Scurrent2 = board.LookupParameter(ParametersName.ParamScurrent2)?.AsString();
                 panelItem.Cos2 = board.LookupParameter(ParametersName.ParamCos2)?.AsString();
                 panelItem.Icurrent2 = board.LookupParameter(ParametersName.ParamIcurrent2)?.AsString();
 
                 panelItem.Mode3 = board.LookupParameter(ParametersName.ParamMode3)?.AsString();
                 panelItem.Kc3 = board.LookupParameter(ParametersName.ParamKc3)?.AsString();
-                panelItem.Pcurrent3 = board.LookupParameter(ParametersName.ParamScurrent3)?.AsString();
+                panelItem.Pcurrent3 = board.LookupParameter(ParametersName.ParamPcurrent3)?.AsString();
                 panelItem.Scurrent3 = board.LookupParameter(ParametersName.ParamScurrent3)?.AsString();
                 panelItem.Cos3 = board.LookupParameter(ParametersName.ParamCos3)?.AsString();
                 panelItem.Icurrent3 = board.LookupParameter(ParametersName.ParamIcurrent3)?.AsString();
 
                 panelItem.Mode4 = board.LookupParameter(ParametersName.ParamMode4)?.AsString();
                 panelItem.Kc4 = board.LookupParameter(ParametersName.ParamKc4)?.AsString();
-                panelItem.Pcurrent4 = board.LookupParameter(ParametersName.ParamScurrent4)?.AsString();
+                panelItem.Pcurrent4 = board.LookupParameter(ParametersName.ParamPcurrent4)?.AsString();
                 panelItem.Scurrent4 = board.LookupParameter(ParametersName.ParamScurrent4)?.AsString();
                 panelItem.Cos4 = board.LookupParameter(ParametersName.ParamCos4)?.AsString();
                 panelItem.Icurrent4 = board.LookupParameter(ParametersName.ParamIcurrent4)?.AsString();
@@ -197,7 +197,7 @@ namespace FromRevitConnector
                 circuitItem.TypeLoadName = circ.LookupParameter(ParametersName.ParamTypeLoadName)?.AsString();
                 circuitItem.LoadName = circ.LookupParameter(ParametersName.ParamLoadName)?.AsString();
                 circuitItem.AccountingModeLoads = circ.LookupParameter(ParametersName.ParamAccountingModeLoads)?.AsString();
-                circuitItem.AccountingModeLoads = circ.LookupParameter(ParametersName.ParamAccountingModeLoads)?.AsString();
+                //circuitItem.AccountingModeLoads = circ.LookupParameter(ParametersName.ParamAccountingModeLoads)?.AsString();
                 circuitItem.PhaseConnecting = circ.LookupParameter(ParametersName.ParamPhaseConnecting)?.AsString();
                 circuitItem.CosF = circ.LookupParameter(ParametersName.ParamCosF)?.AsString();
                 circuitItem.Pcurrent = circ.LookupParameter(ParametersName.ParamPcurrent)?.AsString();
