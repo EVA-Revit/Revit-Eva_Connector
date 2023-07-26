@@ -9,6 +9,8 @@ namespace Revit_Eva_Connector.Items
 {
     public class PanelItem : GenericItem
     {
+
+        public List<CircuitItem>? CircuitItems { get; set; }
         public string? Mode1 { get; set; }
         public string? Kc1 { get; set; }
         public string? Pcurrent1 { get; set; }

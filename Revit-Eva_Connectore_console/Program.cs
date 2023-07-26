@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Revit_Eva_Connector.Items;
 using Newtonsoft.Json;
+using Revit_Eva_Connector;
 
 namespace Revit_Eva_Connector_console
 {
@@ -35,9 +36,11 @@ namespace Revit_Eva_Connector_console
 
             //bool isWork = true;
 
-            //string path = "\\EVA_connector.json";
+            string path = "EVA_connector.json";
 
-            //MyPath = Path.GetTempPath() + path;
+            var mpath = Path.GetTempPath();
+
+            MyPath = mpath + path;
             //if (File.Exists(MyPath) == false)
             //{
             //    var file = File.Create(MyPath);
@@ -45,10 +48,16 @@ namespace Revit_Eva_Connector_console
 
 
             //}
-           
-            //MyPath = "null";
-            if (MyPath != null) Console.WriteLine(MyPath.Length);
 
+            //MyPath = "null";
+            if (MyPath != null) Console.WriteLine(MyPath);
+            Console.WriteLine(mpath);
+
+            ConnectorJson.MyPath = MyPath;
+            var temp = ConnectorJson.ReadAllFromDB();
+
+            var pop = temp.First().Id.ToString();
+            Console.WriteLine(pop);
             Console.ReadLine();
 
             //string allComands = "0 - Вывести всех \n 1 - Добавить нового \n 2 - удалить  \n 3 - выход";

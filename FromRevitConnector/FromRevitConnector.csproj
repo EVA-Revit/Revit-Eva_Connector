@@ -62,7 +62,6 @@
     <ProjectReference Include="..\Revit-Eva_Connector\Revit-Eva_Connector.csproj">
       <Project>{d02c31a8-e00f-4a89-8435-4e61ae8cf9fa}</Project>
       <Name>Revit-Eva_Connector</Name>
-      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

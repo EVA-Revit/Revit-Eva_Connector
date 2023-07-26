@@ -56,6 +56,7 @@ namespace FromRevitConnector
         /// <returns></returns>
         static Boolean Load_from_Revit()
         {
+            //TaskDialog.Show("New plagin", Revit_Eva_Connector.Connector.wqwe);
             //TaskDialog.Show("New plagin", "Load from Revit");
             //Получение настроек выгрузки в DB
 
@@ -79,13 +80,13 @@ namespace FromRevitConnector
 
 
 
-            //В зависимости от настроек произвести сбор данных с ревит 
-            //Получение всех панелей
-           var panelsItems = FillingsPanelItems();
+
 
             //запись в json
             string path = "\\EVA_connector.json";
-            var myPath = Path.GetTempPath() + path;
+            var temppath = Environment.GetEnvironmentVariable("TMP", EnvironmentVariableTarget.User);
+            //var temppath = Path.GetTempPath();
+            var myPath = temppath + path;
             if (File.Exists(myPath) == false)
             {
                 var file = File.Create(myPath);
@@ -98,13 +99,25 @@ namespace FromRevitConnector
                 file.Close();
             }
 
-            var poe = new Revit_Eva_Connector.Items.CircuitItem();
-            var uy = new Revit_Eva_Connector.Connector();
-;          
-            //ConnectorJson.MyPath = myPath;
-            //ConnectorJson.SaveToDB(panelsItems, myPath);
 
-            TaskDialog.Show("New plagin", myPath);
+
+            string docName = doc.Title;
+
+
+
+
+            ConnectorJson.MyPath = myPath;
+
+            //В зависимости от настроек произвести сбор данных с ревит 
+            var panelsItems = FillingsPanelItems();
+            //Запись в файл json
+            ConnectorJson.SaveToDBFromRevit(panelsItems);
+
+
+
+            //TaskDialog.Show("sddd", myPath);
+
+
 
             return true;
         }
@@ -126,7 +139,7 @@ namespace FromRevitConnector
                 //Метод забора всей инфы щита
                 PanelItem panelItem = new PanelItem();
 
-                panelItem.Name = board.Name;
+                //panelItem.Name = board.Name;
                 panelItem.Id = board.Id.IntegerValue;
                 panelItem.PSet = board.LookupParameter(ParametersName.ParamPSet)?.AsString();
 
@@ -159,8 +172,7 @@ namespace FromRevitConnector
                 panelItem.Icurrent4 = board.LookupParameter(ParametersName.ParamIcurrent4)?.AsString();
 
 
-                //panelItem.CircuitItems = FillingCircItems(board);
-
+                panelItem.CircuitItems = FillingCircItems(board);
 
                 panelItems.Add(panelItem);
 

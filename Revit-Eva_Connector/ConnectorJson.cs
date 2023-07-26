@@ -9,12 +9,10 @@ using System.IO;
 
 namespace Revit_Eva_Connector
 {
-    public class Connector
+    public static class ConnectorJson
     {
 
         public static string MyPath { get; set; }
-
-
 
 
         public static void SaveToDB(PanelItem panelItem)
@@ -27,6 +25,12 @@ namespace Revit_Eva_Connector
             File.WriteAllText(MyPath, serializedPanels);
         }
 
+        public static void SaveToDBFromRevit(List<PanelItem> panels)
+        {
+            string serializedPanels = JsonConvert.SerializeObject(panels);
+
+            File.WriteAllText(MyPath, serializedPanels);
+        }
 
 
         public static List<PanelItem> ReadAllFromDB()
