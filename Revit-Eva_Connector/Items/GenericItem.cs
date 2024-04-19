@@ -1,17 +1,23 @@
 ﻿#nullable enable
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Revit_Eva_Connector.Items
 {
     public class GenericItem
     {
+        /// <summary>
+        /// Имя
+        /// </summary>
         public string? Name { get; set; }
+
+        /// <summary>
+        /// Идентификатор
+        /// </summary>
         public int Id { get; set; }
 
-        public string? PSet { get; set; }
+        /// <summary>
+        /// Установленная мощность
+        /// </summary>
+        public string? Pset { get; set; }
+        public bool? PsetIn { get; set; }
+        public bool? PsetOut { get; set; }
     }
 }

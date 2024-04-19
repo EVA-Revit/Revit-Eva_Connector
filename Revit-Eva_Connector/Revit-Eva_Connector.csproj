@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="ConnectorJson.cs" />
     <Compile Include="Items\CircuitItem.cs" />
+    <Compile Include="Items\ConsumerItem.cs" />
     <Compile Include="Items\GenericItem.cs" />
     <Compile Include="Items\PanelItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
