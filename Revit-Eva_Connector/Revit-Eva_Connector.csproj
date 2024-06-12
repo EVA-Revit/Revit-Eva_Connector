@@ -24,6 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>latest</LangVersion>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,14 +34,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>latest</LangVersion>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EvaAPI">
       <HintPath>..\..\EvaAPI\EvaAPI\bin\Debug\EvaAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RevitAPI">
       <HintPath>D:\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
@@ -60,7 +58,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectorJson.cs" />
     <Compile Include="Items\CircuitItem.cs" />
     <Compile Include="Items\ConsumerItem.cs" />
     <Compile Include="Items\GenericItem.cs" />
@@ -70,9 +67,6 @@
     <Compile Include="UserConfigs\CircuitParametersUserConfig.cs" />
     <Compile Include="UserConfigs\ConsumerParametersUserConfig.cs" />
     <Compile Include="UserConfigs\PanelParametersUserConfig.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
