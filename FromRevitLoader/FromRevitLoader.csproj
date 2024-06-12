@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+
+	<PropertyGroup>
+		<Version>1.0.0.0</Version>
+		<RootNamespace>FromRevitLoader</RootNamespace>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		
+		<Platform>x64</Platform>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<Optimize>false</Optimize>
+		<Prefer32Bit>false</Prefer32Bit>
+		<UseWpf>true</UseWpf>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+  <PropertyGroup>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <Configurations>Debug;R2020;R2021;R2022;R2023;R2024;</Configurations>
+    <Platforms>x64</Platforms>
+    <TargetFramework>net48</TargetFramework>
+    <ExternalVersion>$(Configuration.Substring(1))</ExternalVersion>
+    <DefineConstants>R$(ExternalVersion)</DefineConstants>
+  </PropertyGroup>
+	
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <ExternalVersion>2020</ExternalVersion>
+    <DefineConstants>Debug;R$(ExternalVersion)</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyName>$(RootNamespace)_$(ExternalVersion)</AssemblyName>
+  </PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="$(ExternalVersion).*" IncludeAssets="build; compile" PrivateAssets="All" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\Revit-Eva_Connector\Revit-Eva_Connector.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Reference Include="EvaAPI">
+	    <HintPath>..\..\EvaAPI\EvaAPI\bin\Debug\EvaAPI.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+	
+
+ </Project>

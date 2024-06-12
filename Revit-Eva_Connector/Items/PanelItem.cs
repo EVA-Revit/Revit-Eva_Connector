@@ -9,6 +9,13 @@ namespace Revit_Eva_Connector.Items
     public class PanelItem : GenericItem
     {
         /// <summary>
+        /// Имя
+        /// </summary>
+        public string? Name { get; set; }
+
+
+
+        /// <summary>
         /// Электрические цепи
         /// </summary>
         public List<CircuitItem>? CircuitItems { get; set; }
