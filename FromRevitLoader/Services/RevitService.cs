@@ -112,11 +112,14 @@ public class RevitService
         foreach (var circuitItem in circuits)
         {
 
-#if R2020
+#if R2020 || R2021
             var circuit = panel.MEPModel.ElectricalSystems.OfType<ElectricalSystem>().FirstOrDefault(c => c.Id.IntegerValue == circuitItem.Id);
+#elif R2022 || R2023
+            var circuit = panel.MEPModel.GetElectricalSystems().FirstOrDefault(c => c.Id.IntegerValue == circuitItem.Id);
 #else
             var circuit = panel.MEPModel.GetElectricalSystems().FirstOrDefault(c => c.Id.Value == circuitItem.Id);
 #endif
+
             if (circuit == null)
                 continue;
             SetCircuit(circuit, circuitItem);
@@ -182,7 +185,7 @@ public class RevitService
             Name = panel.Name
         };
 
-#if R2020
+#if R2020 || R2021 || R2022 || R2023
         panelItem.Id = panel.Id.IntegerValue;
 #else
         panelItem.Id = panel.Id.Value;
@@ -255,7 +258,7 @@ public class RevitService
     private CircuitItem GetCircuitItem(ElectricalSystem circuit)
     {
         var circuitItem = new CircuitItem();
-#if R2020
+#if R2020 || R2021 || R2022 || R2023
         circuitItem.Id = circuit.Id.IntegerValue;
 #else
         circuitItem.Id = circuit.Id.Value;

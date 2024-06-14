@@ -7,7 +7,7 @@ using Services;
 
 [Regeneration(RegenerationOption.Manual)]
 [Transaction(TransactionMode.Manual)]
-public class UnLoadFromRevit : IExternalCommand
+public class UnLoadFromRevitCommand : IExternalCommand
 {
     public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
     {
