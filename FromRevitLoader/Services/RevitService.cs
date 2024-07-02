@@ -2,6 +2,7 @@
 
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Electrical;
+using Newtonsoft.Json.Linq;
 using Revit_Eva_Connector.Items;
 using Revit_Eva_Connector.Services;
 using Revit_Eva_Connector.UserConfigs;
@@ -218,7 +219,26 @@ public class RevitService
                             panelItemProperty.SetValue(panelItem, parameter.AsDouble().ToString(CultureInfo.InvariantCulture));
                             break;
                         case StorageType.Integer:
-                            panelItemProperty.SetValue(panelItem, parameter.AsInteger().ToString());
+#if R2019 || R2020 || R2021
+                            if (parameter.Definition.ParameterType == ParameterType.YesNo)
+#else
+                            if (parameter.Definition.GetDataType() == SpecTypeId.Boolean.YesNo)
+#endif
+                            {
+                                if (parameter.AsInteger() == 0)
+                                {
+                                    panelItemProperty.SetValue(panelItem, false);
+                                }
+                                else
+                                {
+                                    panelItemProperty.SetValue(panelItem, true);
+                                }
+                            }
+                            else
+                            {
+                                panelItemProperty.SetValue(panelItem, parameter.AsInteger().ToString());
+                            }
+                           
                             break;
                         case StorageType.String:
                             panelItemProperty.SetValue(panelItem, parameter.AsString());
@@ -270,35 +290,60 @@ public class RevitService
         foreach (var circuitItemProperty in circuitItemProperties)
         {
             var userConfigProperty = circuitParametersUserConfigProperties.FirstOrDefault(p => p.Name == circuitItemProperty.Name);
-            if (userConfigProperty == null)
-                continue;
-            if (userConfigProperty.GetValue(_ciruitParametersUserConfig) is string value)
+            if (userConfigProperty != null)
             {
-                var parameter = circuit.Parameters.OfType<Parameter>().FirstOrDefault(p => p.Definition.Name == value);
-                if (parameter != null)
+                if (userConfigProperty.GetValue(_ciruitParametersUserConfig) is string value)
                 {
-                    switch (parameter.StorageType)
+                    var parameter = circuit.Parameters.OfType<Parameter>().FirstOrDefault(p => p.Definition.Name == value);
+                    if (parameter != null)
                     {
-                        case StorageType.Double:
-                            circuitItemProperty.SetValue(circuitItem, parameter.AsDouble().ToString(CultureInfo.InvariantCulture));
-                            break;
-                        case StorageType.Integer:
-                            circuitItemProperty.SetValue(circuitItem, parameter.AsInteger().ToString());
-                            break;
-                        case StorageType.String:
-                            circuitItemProperty.SetValue(circuitItem, parameter.AsString());
-                            break;
+                        switch (parameter.StorageType)
+                        {
+                            case StorageType.Double:
+                                circuitItemProperty.SetValue(circuitItem, parameter.AsDouble().ToString(CultureInfo.InvariantCulture));
+                                break;
+                            case StorageType.Integer:
+                                circuitItemProperty.SetValue(circuitItem, parameter.AsInteger().ToString());
+                                break;
+                            case StorageType.String:
+                                circuitItemProperty.SetValue(circuitItem, parameter.AsString());
+                                break;
+                        }
+
                     }
-                   
+                }
+
+                if (userConfigProperty.GetValue(_ciruitParametersUserConfig) is bool valueBool)
+                {
+                    circuitItemProperty.SetValue(circuitItem, valueBool);
                 }
             }
 
-            if (userConfigProperty.GetValue(_ciruitParametersUserConfig) is bool valueBool)
+            if (circuitItemProperty.Name == nameof(CircuitItem.IsConsumerIsPanel))
             {
-                circuitItemProperty.SetValue(circuitItem, valueBool);
+                circuitItem.IsConsumerIsPanel = IsConsumerIsPanel(circuit);
             }
+
         }
 
         return circuitItem;
+    }
+
+    /// <summary>
+    /// Определяет потребитель панель или нет
+    /// </summary>
+    /// <param name="circuit"></param>
+    /// <returns></returns>
+    private bool IsConsumerIsPanel(ElectricalSystem circuit)
+    {
+        // Получить категорию OST_ElectricalEquipment
+        var electricalEquipmentCategory = Category.GetCategory(_doc, BuiltInCategory.OST_ElectricalEquipment);
+
+        IEnumerable<Element> elementsInCircuit = circuit.Elements.OfType<Element>();
+
+        // TODO: Проверить, что элементы могут быть в исключении, как потребители
+        bool hasElectricalEquipment = elementsInCircuit.Any(element => element.Category.Id == electricalEquipmentCategory.Id);
+
+        return hasElectricalEquipment;
     }
 }

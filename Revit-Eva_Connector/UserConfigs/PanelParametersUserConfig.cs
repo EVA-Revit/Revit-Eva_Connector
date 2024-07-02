@@ -83,6 +83,9 @@ public class PanelParametersUserConfig : PropertyObserver
     private string _icurrent4;
     private bool _icurrent4In;
     private bool _icurrent4Out;
+    private bool _isSubPanelIn;
+    private bool _isSubPanelOut;
+    private string _isSubPanel;
 
     public string Pset
     {
@@ -911,6 +914,43 @@ public class PanelParametersUserConfig : PropertyObserver
         }
     }
 
+    /// <summary>
+    /// Вложенная панель
+    /// </summary> 
+    public string IsSubPanel
+    {
+        get => _isSubPanel;
+        set
+        {
+            if (value == _isSubPanel) return;
+            _isSubPanel = value;
+            OnPropertyChanged();
+        }
+    }
+
+
+    public bool IsSubPanelIn
+    {
+        get => _isSubPanelIn;
+        set
+        {
+            if (value == _isSubPanelIn) return;
+            _isSubPanelIn = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public bool IsSubPanelOut
+    {
+        get => _isSubPanelOut;
+        set
+        {
+            if (value == _isSubPanelOut) return;
+            _isSubPanelOut = value;
+            OnPropertyChanged();
+        }
+    }
+
 
     /// <summary>
     /// Установка имен параметров по умолчанию
@@ -998,6 +1038,10 @@ public class PanelParametersUserConfig : PropertyObserver
                 { nameof(Icurrent4), "EVA_Iр_4" },
                 { nameof(Icurrent4In), false },
                 { nameof(Icurrent4Out), false },
+
+                { nameof(IsSubPanel), "EVA_Вложенный_щит"},
+                { nameof(IsSubPanelIn), false },
+                { nameof(IsSubPanelOut), false },
 
             };
 

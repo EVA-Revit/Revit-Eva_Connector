@@ -226,5 +226,15 @@ namespace Revit_Eva_Connector.Items
         public string? Project { get; set; }
         public bool? ProjectIn { get; set; }
         public bool? ProjectOut { get; set; }
+
+        /// <summary>
+        /// Потребитель панель
+        /// Автоматически заполняемое свойство
+        /// </summary>
+        public bool? IsConsumerIsPanel { get; set; }
+        public bool? IsConsumerIsPanelIn { get; set; }
+        public bool? IsConsumerIsPanelOut { get; set; }
+
+
     }
 }

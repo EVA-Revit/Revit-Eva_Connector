@@ -188,5 +188,12 @@ namespace Revit_Eva_Connector.Items
         public string? Icurrent4 { get; set; }
         public bool? Icurrent4In { get; set; }
         public bool? Icurrent4Out { get; set; }
+
+        /// <summary>
+        /// Вложенная панель
+        /// </summary>
+        public bool? IsSubPanel { get; set; }
+        public bool? IsSubPanelIn { get; set; }
+        public bool? IsSubPanelOut { get; set; }
     }
 }
