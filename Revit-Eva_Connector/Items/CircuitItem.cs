@@ -1,6 +1,8 @@
 ﻿#nullable enable
 namespace Revit_Eva_Connector.Items
 {
+    using Enums;
+
     /// <summary>
     /// Электрическая цепь
     /// </summary>
@@ -228,13 +230,9 @@ namespace Revit_Eva_Connector.Items
         public bool? ProjectOut { get; set; }
 
         /// <summary>
-        /// Потребитель панель
+        /// Тип потребителя
         /// Автоматически заполняемое свойство
         /// </summary>
-        public bool? IsConsumerIsPanel { get; set; }
-        public bool? IsConsumerIsPanelIn { get; set; }
-        public bool? IsConsumerIsPanelOut { get; set; }
-
-
+        public TypeConsumer? TypeConsumer { get; set; }
     }
 }

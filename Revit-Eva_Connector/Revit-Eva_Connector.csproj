@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\TypeConsumer.cs" />
     <Compile Include="Items\CircuitItem.cs" />
     <Compile Include="Items\ConsumerItem.cs" />
     <Compile Include="Items\GenericItem.cs" />
@@ -68,5 +69,6 @@
     <Compile Include="UserConfigs\ConsumerParametersUserConfig.cs" />
     <Compile Include="UserConfigs\PanelParametersUserConfig.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

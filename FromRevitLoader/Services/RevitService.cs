@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using Revit_Eva_Connector.Enums;
 
 public class RevitService
 {
@@ -319,9 +320,10 @@ public class RevitService
                 }
             }
 
-            if (circuitItemProperty.Name == nameof(CircuitItem.IsConsumerIsPanel))
+            if (circuitItemProperty.Name == nameof(CircuitItem.TypeConsumer))
             {
-                circuitItem.IsConsumerIsPanel = IsConsumerIsPanel(circuit);
+
+                circuitItem.TypeConsumer = GetConsumerType(circuit);
             }
 
         }
@@ -334,16 +336,29 @@ public class RevitService
     /// </summary>
     /// <param name="circuit"></param>
     /// <returns></returns>
-    private bool IsConsumerIsPanel(ElectricalSystem circuit)
+    private TypeConsumer GetConsumerType(ElectricalSystem circuit)
     {
         // Получить категорию OST_ElectricalEquipment
         var electricalEquipmentCategory = Category.GetCategory(_doc, BuiltInCategory.OST_ElectricalEquipment);
 
         IEnumerable<Element> elementsInCircuit = circuit.Elements.OfType<Element>();
+        
+        var electricalEquipment = elementsInCircuit.Where(element => element.Category.Id == electricalEquipmentCategory.Id).ToList();
+
+        foreach (var element in electricalEquipment)
+        {
+            if (element.LookupParameter("EVA_Вложенный_щит")?.AsInteger() == 1)
+            {
+                return TypeConsumer.SubPanel;
+            }
+        }
 
         // TODO: Проверить, что элементы могут быть в исключении, как потребители
-        bool hasElectricalEquipment = elementsInCircuit.Any(element => element.Category.Id == electricalEquipmentCategory.Id);
-
-        return hasElectricalEquipment;
+        if (electricalEquipment.Any())
+        {
+            return TypeConsumer.Panel;
+        }
+      
+        return TypeConsumer.General;
     }
 }
