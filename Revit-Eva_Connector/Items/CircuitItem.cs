@@ -238,6 +238,6 @@ namespace Revit_Eva_Connector.Items
         /// <summary>
         /// Идентификатор вложенной панели
         /// </summary>
-        public long IdSubOanel { get; set; }
+        public long IdSubPanel { get; set; }
     }
 }

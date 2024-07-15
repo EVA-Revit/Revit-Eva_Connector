@@ -325,7 +325,7 @@ public class RevitService
                 circuitItem.TypeConsumer = GetConsumerType(circuit, out var idSubPanel);
                 if (idSubPanel != 0)
                 {
-                    circuitItem.IdSubOanel = idSubPanel;
+                    circuitItem.IdSubPanel = idSubPanel;
                 }
             }
         }
