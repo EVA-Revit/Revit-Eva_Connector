@@ -234,5 +234,10 @@ namespace Revit_Eva_Connector.Items
         /// Автоматически заполняемое свойство
         /// </summary>
         public TypeConsumer? TypeConsumer { get; set; }
+
+        /// <summary>
+        /// Идентификатор вложенной панели
+        /// </summary>
+        public long IdSubOanel { get; set; }
     }
 }

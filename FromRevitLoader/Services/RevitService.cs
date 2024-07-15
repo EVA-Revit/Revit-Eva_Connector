@@ -322,10 +322,12 @@ public class RevitService
 
             if (circuitItemProperty.Name == nameof(CircuitItem.TypeConsumer))
             {
-
-                circuitItem.TypeConsumer = GetConsumerType(circuit);
+                circuitItem.TypeConsumer = GetConsumerType(circuit, out var idSubPanel);
+                if (idSubPanel != 0)
+                {
+                    circuitItem.IdSubOanel = idSubPanel;
+                }
             }
-
         }
 
         return circuitItem;
@@ -336,8 +338,10 @@ public class RevitService
     /// </summary>
     /// <param name="circuit"></param>
     /// <returns></returns>
-    private TypeConsumer GetConsumerType(ElectricalSystem circuit)
+    private TypeConsumer GetConsumerType(ElectricalSystem circuit, out long idSubPanel)
     {
+        idSubPanel = 0;
+
         // Получить категорию OST_ElectricalEquipment
         var electricalEquipmentCategory = Category.GetCategory(_doc, BuiltInCategory.OST_ElectricalEquipment);
 
@@ -349,6 +353,11 @@ public class RevitService
         {
             if (element.LookupParameter("EVA_Вложенный_щит")?.AsInteger() == 1)
             {
+#if R2020 || R2021 || R2022 || R2023
+                idSubPanel = element.Id.IntegerValue;
+#else
+                idSubPanel = element.Id.Value;
+#endif
                 return TypeConsumer.SubPanel;
             }
         }
